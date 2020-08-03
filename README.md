@@ -1,5 +1,5 @@
 # members-db
-Database of members in Approvers, implemented in Rust.
+Database of members in the club, implemented in Rust.
 
 ## Usage
 ```console
