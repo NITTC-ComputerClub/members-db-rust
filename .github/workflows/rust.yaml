@@ -50,3 +50,39 @@ jobs:
         with:
           command: test
           args: --verbose
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: members-db
+          path: target/debug/members-db
+
+  distribute:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/download-artifact@v2
+        with:
+          name: members-db
+
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.BOT_SSH_KEY }}
+          name: id_ed25519
+          known_hosts: ${{ secrets.BOT_KNOWN_HOSTS }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name Bot
+          git config --global user.email bot@nittc-programming.club
+
+      - name: Clone members-db-dist repository
+        run: git clone git@github.com:NITTC-ComputerClub/members-db-dist.git public
+
+      - name: Build members database
+        run: ./members-db build
+
+      - name: Distribute to members-db-dist
+        run: cd public && git commit -m "$(date)" && git push
