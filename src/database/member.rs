@@ -3,9 +3,7 @@ use uuid::Uuid;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Contacts {
-    twitter: Option<u64>,
-    github: Option<u64>,
-    discord: Option<u64>,
+    office365: Option<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -20,11 +18,7 @@ impl Member {
         Member {
             id: Uuid::new_v4(),
             name,
-            contacts: Contacts {
-                twitter: None,
-                github: None,
-                discord: None,
-            },
+            contacts: Contacts { office365: None },
         }
     }
 }
