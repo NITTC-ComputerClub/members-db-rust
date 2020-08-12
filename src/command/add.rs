@@ -17,8 +17,7 @@ impl ICommand for AddCommand {
     fn execute(&self, opts: &Opts) {
         let path = String::from(&opts.database);
         let mut database = Database::new(path);
-        let member = Member::new(self.name.clone())
-            .with_office365(self.office365.clone());
+        let member = Member::new(self.name.clone()).with_office365(self.office365.clone());
 
         database.add_member(member);
         database.save();
