@@ -86,4 +86,4 @@ jobs:
         run: chmod +x ./members-db && ./members-db build
 
       - name: Distribute to members-db-dist
-        run: cd public && git add . && git commit -m "$(date)" && git push
+        run: cd public && git add . && git commit --allow-empty -m "$(date)" && git push
