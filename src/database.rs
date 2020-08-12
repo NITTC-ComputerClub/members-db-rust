@@ -7,6 +7,7 @@ use crate::filesystem;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 struct Payload {
+    version: Option<u32>,
     members: Vec<Member>,
 }
 
