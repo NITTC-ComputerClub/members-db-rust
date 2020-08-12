@@ -86,4 +86,4 @@ jobs:
         run: ./members-db build
 
       - name: Distribute to members-db-dist
-        run: cd public && git commit -m "$(date)" && git push
+        run: cd public && git add . && git commit -m "$(date)" && git push
