@@ -45,7 +45,7 @@ impl From<old::Member> for Member {
 impl From<old::Payload> for Payload {
     fn from(before: old::Payload) -> Self {
         Payload {
-            version: 3,
+            version: 4,
             members: before
                 .members
                 .clone()
