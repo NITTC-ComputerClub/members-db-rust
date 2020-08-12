@@ -21,4 +21,10 @@ impl Member {
             contacts: Contacts { office365: None },
         }
     }
+
+    pub fn with_office365(mut self, id: Option<String>) -> Self {
+        self.contacts.office365 = id;
+
+        self
+    }
 }
