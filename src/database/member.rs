@@ -3,7 +3,7 @@ use uuid::Uuid;
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Contacts {
-    office365: Option<u64>,
+    office365: Option<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
