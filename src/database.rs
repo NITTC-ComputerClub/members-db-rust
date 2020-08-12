@@ -5,6 +5,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::filesystem;
 
+const VERSION: u32 = 4;
+
 #[derive(Clone, Debug, Serialize, Deserialize)]
 struct Payload {
     version: Option<u32>,
@@ -21,6 +23,13 @@ impl Database {
     pub fn new(path: String) -> Self {
         let yaml = filesystem::open(path.as_str());
         let payload: Payload = serde_yaml::from_str(yaml.as_str()).expect("Failed to deserialize.");
+
+        if payload.version.is_none() || payload.version.unwrap() != VERSION {
+            panic!(
+                "Only version {} is supported. Did you forget to migrate?",
+                VERSION
+            );
+        }
 
         Database { path, payload }
     }
